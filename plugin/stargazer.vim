@@ -1,3 +1,8 @@
+if exists('g:loaded_stargazer') || &compatible
+  finish
+endif
+let g:loaded_stargazer = 1
+
 command -nargs=1 PowerStar :call stargazer#FindWord(<f-args>) | set hls
 
 function! stargazer#FindWord(word)
