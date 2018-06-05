@@ -3,17 +3,12 @@ if exists('g:loaded_stargazer') || &compatible
 endif
 let g:loaded_stargazer = 1
 
-command -nargs=1 PowerStar :call stargazer#FindWord(<f-args>) | set hls
+command -nargs=1 PowerStar if !exists('g:found_a_word') | call stargazer#FindWord(<f-args>) | set hls | else | PowerStarOff | endif
+command -nargs=0 -bar PowerStarOff unlet g:found_a_word | cclose | set nohls
 
 function! stargazer#FindWord(word)
-  if exists('g:found_a_word')
-    unlet g:found_a_word
-    let @/ = ''
-    cclose
-    return
-  endif
   let dir = getcwd()
-  let g:found_a_word = 1
+  let g:found_a_word = a:word
   let tmpfile = tempname()
   let win = win_getid()
   call system(&grepprg . ' ' . a:word . ' ' . dir . ' ' . &shellpipe . ' ' . tmpfile)
