@@ -1,6 +1,5 @@
 # vim-stargazer
-star command `*` combined with `:grep` in $CWD.  
-Uses your `'grepprg'`, read `:h 'grepprg'`
+star command `*` combined with `grep` in $CWD.  
 
 Provides one command `:Powerstar {word}`  
 This is a 'toggle' command, pressing it a second time, removes the search highlight 
